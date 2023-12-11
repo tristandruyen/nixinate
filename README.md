@@ -1,5 +1,18 @@
 # Nixinate 🕶️
 
+
+> Forked from https://github.com/MatthewCroughan/nixinate
+>
+> As the original version seems somewhat abandoned.
+>
+> Changes so far:
+> - Merged a helpful PR for ssh config hostnames https://git.vlt81.de/tristan/nixinate/pulls/49
+> - Fixed nix run on non-posix compliant shells like fish by explicitly adding a bash shim to the script
+>
+> PR's welcome :)
+
+
+
 Nixinate is a proof of concept that generates a deployment script for each
 `nixosConfiguration` you already have in your flake, which can be ran via `nix
 run`, thanks to the `apps` attribute of the [flake
@@ -128,3 +141,9 @@ Connection to itchy.scratchy.com closed.
 * No Premature Optimization: Make it work, then optimize it later if the
   optimization is taking a lot of time to figure out now.
 * KISS: Keep it simple, stupid. Unnecesary complexity should be avoided.
+
+# License
+
+You can find the original Project license at ./LICENSE.original.md all commits upto including ab2face8e37aaaee98404cd2f499940775b4776f are licensed under this (MIT)
+
+All of my contributions are licensed under AGPL which you can find at ./LICENSE.md
