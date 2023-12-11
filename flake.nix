@@ -31,6 +31,7 @@
               nix = "${getExe final.nix}";
               nixos-rebuild = "${getExe final.nixos-rebuild}";
               openssh = "${getExe final.openssh}";
+              bash = "${getExe final.bash}";
               flock = "${getExe final.flock}";
 
               n = flake.nixosConfigurations.${machine}._module.args.nixinate;
@@ -47,6 +48,7 @@
 
               script =
               ''
+                #!${bash}
                 set -e
                 echo "🚀 Deploying nixosConfigurations.${machine} from ${flake}"
               '' + (if sshConfigHost != "" then ''
