@@ -118,32 +118,30 @@
               in
               final.writeScript "deploy-${machine}.sh" script;
           in
-          {
-            nixinate = (
-              nixpkgs.lib.genAttrs
-                validMachines
-                (
-                  x: {
-                    type = "app";
-                    program = toString (mkDeployScript {
-                      machine = x;
-                      dryRun = false;
-                    });
-                  }
-                )
-              // nixpkgs.lib.genAttrs
-                (map (a: a + "-dry-run") validMachines)
-                (
-                  x: {
-                    type = "app";
-                    program = toString (mkDeployScript {
-                      machine = nixpkgs.lib.removeSuffix "-dry-run" x;
-                      dryRun = true;
-                    });
-                  }
-                )
-            );
-          };
+          (
+            nixpkgs.lib.genAttrs
+              (map (a: "nixinate-" + a) validMachines)
+              (
+                x: {
+                  type = "app";
+                  program = toString (mkDeployScript {
+                    machine = nixpkgs.lib.removePrefix "nixinate-" x;
+                    dryRun = false;
+                  });
+                }
+              )
+            // nixpkgs.lib.genAttrs
+              (map (a: "nixinate-" + a + "-dry-run") validMachines)
+              (
+                x: {
+                  type = "app";
+                  program = toString (mkDeployScript {
+                    machine = nixpkgs.lib.removeSuffix "-dry-run" (nixpkgs.lib.removePrefix "nixinate-" x);
+                    dryRun = true;
+                  });
+                }
+              )
+          );
       };
       nixinate = forAllSystems (system: pkgs: nixpkgsFor.${system}.generateApps);
       checks = forAllSystems (
