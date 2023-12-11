@@ -31,7 +31,7 @@ Below is a minimal example:
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-    nixinate.url = "github:matthewcroughan/nixinate";
+    nixinate.url = "git+https://git.vlt81.de/tristan/nixinate.git";
   };
 
   outputs = { self, nixpkgs, nixinate }: {
