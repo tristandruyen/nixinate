@@ -8,7 +8,6 @@
 > Changes so far:
 > - Merged a helpful PR for ssh config hostnames https://git.vlt81.de/tristan/nixinate/pulls/49
 > - Fixed nix run on non-posix compliant shells like fish by explicitly adding a bash shim to the script
-> - Solved https://git.vlt81.de/tristan/nixinate/issues/12 by renaming apps from `nixinate.{$machine_name}` to `nixinate-${machine_name]}`
 >
 > PR's welcome :)
 
@@ -76,12 +75,12 @@ git+file:///etc/nixos
     └───myMachine: NixOS configuration
 ```
 
-To finally execute the deployment script, use `nix run .#apps.nixinate-myMachine`
+To finally execute the deployment script, use `nix run .#apps.nixinate.myMachine`
 
 #### Example Run
 
 ```
-[root@myMachine:/etc/nixos]# nix run .#apps.nixinate-myMachine
+[root@myMachine:/etc/nixos]# nix run .#apps.nixinate.myMachine
 🚀 Deploying nixosConfigurations.myMachine from /nix/store/279p8aaclmng8kc3mdmrmi6q3n76r1i7-source
 👤 SSH User: matthew
 🌐 SSH Host: itchy.scratchy.com

@@ -106,7 +106,7 @@ let
         nixinator.wait_for_unit("multi-user.target")
         nixinator.succeed("mkdir ~/.ssh/")
         nixinator.succeed("ssh-keyscan -H nixinatee >> ~/.ssh/known_hosts")
-        nixinator.succeed("exec ${deployScript.nixinate-nixinatee.program} >&2")
+        nixinator.succeed("exec ${deployScript.nixinate.nixinatee.program} >&2")
         nixinatee.wait_for_unit("nginx.service")
         nixinatee.wait_for_open_port("80")
         with subtest("Check that Nginx webserver can be reached by deployer after deployment"):
