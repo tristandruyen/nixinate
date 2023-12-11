@@ -3,13 +3,17 @@
 {
   config = {
     nix.trustedUsers = [ "nixinator" ];
-    security.sudo.extraRules = [{
-      users = [ "nixinator" ];
-      commands = [{
-        command = "ALL";
-        options = [ "NOPASSWD" ];
-      }];
-    }];
+    security.sudo.extraRules = [
+      {
+        users = [ "nixinator" ];
+        commands = [
+          {
+            command = "ALL";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
     users = {
       mutableUsers = false;
       users = {
